@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Sports - Premium Sportswear Manufacturing</title>
+    <meta name="description" content="Play Sports specializes in custom sportswear manufacturing, sublimation printing, and team apparel for teams, schools, and organizations across Botswana.">
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <!-- Google Fonts - Nike-style (Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        /* ============================================
+                   CSS VARIABLES & ROOT
+                   ============================================ */
+        :root {
+            --white: #ffffff;
+            --white-80: rgba(255, 255, 255, 0.8);
+            --black: #000000;
+            --black-90: rgba(0, 0, 0, 0.9);
+            --black-80: rgba(0, 0, 0, 0.8);
+            --black-70: rgba(0, 0, 0, 0.7);
+            --black-50: rgba(0, 0, 0, 0.5);
+            --black-30: rgba(0, 0, 0, 0.3);
+            --black-15: rgba(0, 0, 0, 0.15);
+            --black-10: rgba(0, 0, 0, 0.1);
+            --black-05: rgba(0, 0, 0, 0.05);
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 60px rgba(0,0,0,0.1);
+            --radius: 0px;
+        }
+
+        /* ============================================
+                   RESET & BASE
+                   ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-color: var(--white);
+            color: var(--black);
+            overflow-x: hidden;
+            padding-top: 76px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: var(--black);
+            opacity: 0.7;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        /* ============================================
+                   TYPOGRAPHY
+                   ============================================ */
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            color: var(--black);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--black);
+        }
+        .section-title.text-center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--black-50);
+            font-weight: 300;
+            margin-top: 20px;
+        }
+
+        /* ============================================
+                   PRELOADER
+                   ============================================ */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            transition: opacity 0.8s ease;
+        }
+        #preloader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader-ball {
+            width: 60px;
+            height: 60px;
+            border: 5px solid var(--black);
+            border-top: 5px solid transparent;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ============================================
+                   NAVIGATION
+                   ============================================ */
+        .navbar {
+            background: var(--white);
+            padding: 12px 0;
+            transition: var(--transition);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+            border-bottom: 1px solid var(--black-05);
+        }
+        .navbar.scrolled {
+            background: var(--white);
+            padding: 8px 0;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+        }
+        .navbar-brand {
+            font-family: var(--font-primary);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--black) !important;
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .navbar-brand .logo-placeholder {
+            width: 42px;
+            height: 42px;
+            background: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 900;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+        .navbar-brand img {
+            height: 42px;
+            margin-right: 8px;
+        }
+        .nav-link {
+            font-family: var(--font-primary);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--black) !important;
+            padding: 8px 18px !important;
+            letter-spacing: 0.5px;
+            position: relative;
+            transition: var(--transition);
+            opacity: 0.5;
+        }
+        .nav-link:hover,
+        .nav-link.active {
+            opacity: 1;
+            color: var(--black) !important;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--black);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 60%;
+            opacity: 1;
+        }
+        .nav-link.active {
+            opacity: 1;
+        }
+        .navbar .btn-primary-custom {
+            padding: 8px 28px;
+            font-family: var(--font-primary);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            transition: var(--transition);
+        }
+        .navbar .btn-primary-custom:hover {
+            background: var(--black-80);
+            color: var(--white);
+            transform: translateY(-2px);
+            opacity: 1;
+        }
+        .navbar-toggler {
+            border: 1px solid var(--black-15);
+            padding: 8px 12px;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* ============================================
+                   HERO SECTION
+                   ============================================ */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0;
+            overflow: hidden;
+            background: var(--black);
+        }
+        .hero-media {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+        .hero-media video,
+        .hero-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 120px 0 80px;
+            width: 100%;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 8px 24px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--white-80);
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .hero h1 {
+            font-size: 5rem;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-weight: 900;
+            letter-spacing: -0.04em;
+        }
+        .hero h1 span {
+            color: var(--white-80);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 550px;
+            color: var(--white-80);
+            margin-bottom: 35px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 40px;
+        }
+        .hero-stats .stat-item h3 {
+            font-size: 2.2rem;
+            color: var(--white);
+            margin-bottom: 0;
+            font-weight: 800;
+        }
+        .hero-stats .stat-item p {
+            font-size: 0.7rem;
+            color: var(--white-80);
+            margin-bottom: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        /* ============================================
+                   BUTTONS
+                   ============================================ */
+        .btn-primary-custom {
+            background: var(--white);
+            color: var(--black);
+            border: none;
+            padding: 14px 40px;
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .btn-primary-custom:hover {
+            background: var(--black-05);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+        .btn-outline-light-custom {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 12px 36px;
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .btn-outline-light-custom:hover {
+            background: var(--white);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+        .btn-outline-dark-custom {
+            background: transparent;
+            color: var(--black);
+            border: 2px solid var(--black);
+            padding: 12px 36px;
+            font-family: var(--font-primary);
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        .btn-outline-dark-custom:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+                   FEATURED PRODUCTS
+                   ============================================ */
+        #featured-products {
+            background: var(--white);
+        }
+        .product-card {
+            background: var(--white);
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--black-05);
+            height: 100%;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .product-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--black-15);
+            box-shadow: var(--shadow-hover);
+        }
+        .product-card .product-image {
+            height: 280px;
+            background: var(--black-05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .product-card .product-image img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        .product-card .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--black);
+            color: var(--white);
+            padding: 4px 16px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .product-card .product-body {
+            padding: 24px;
+        }
+        .product-card .product-body h5 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .product-card .product-body .price {
+            font-size: 1.3rem;
+            font-weight: 800;
+            font-family: var(--font-primary);
+            color: var(--black);
+        }
+        .product-card .product-body .price small {
+            font-size: 0.8rem;
+            color: var(--black-50);
+            font-weight: 400;
+        }
+        .product-card .product-body .btn-inquiry {
+            background: var(--black);
+            border: none;
+            color: var(--white);
+            padding: 6px 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: var(--transition);
+            letter-spacing: 0.5px;
+        }
+        .product-card .product-body .btn-inquiry:hover {
+            background: var(--black-80);
+            color: var(--white);
+        }
+
+        /* ============================================
+                   WHY CHOOSE US
+                   ============================================ */
+        #why-choose-us {
+            background: var(--white);
+            border-top: 1px solid var(--black-05);
+        }
+        .feature-card {
+            background: var(--white);
+            padding: 40px 30px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--black-05);
+            height: 100%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        .feature-card:hover {
+            border-color: var(--black-15);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        .feature-card .icon {
+            width: 70px;
+            height: 70px;
+            background: var(--black-05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--black);
+        }
+        .feature-card h5 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 800;
+            color: var(--black);
+        }
+        .feature-card p {
+            color: var(--black-50);
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            font-weight: 400;
+        }
+
+        /* ============================================
+                   INDUSTRIES WE SERVE
+                   ============================================ */
+        #industries {
+            background: var(--white);
+            border-top: 1px solid var(--black-05);
+        }
+        .industry-item {
+            background: var(--white);
+            padding: 25px 20px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid var(--black-05);
+            height: 100%;
+        }
+        .industry-item:hover {
+            border-color: var(--black-30);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+        }
+        .industry-item i {
+            font-size: 2.2rem;
+            color: var(--black);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .industry-item span {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--black);
+        }
+
+        /* ============================================
+                   STATISTICS
+                   ============================================ */
+        #statistics {
+            background: var(--black);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 60px 0;
+        }
+        #statistics .stat-number {
+            font-family: var(--font-primary);
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1;
+        }
+        #statistics .stat-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--white-80);
+            margin-top: 8px;
+            font-weight: 400;
+        }
+
+        /* ============================================
+                   CTA SECTION
+                   ============================================ */
+        #cta {
+            background: var(--black);
+            padding: 80px 0;
+        }
+        #cta h2 {
+            color: var(--white);
+            font-size: 2.8rem;
+            font-weight: 900;
+        }
+        #cta p {
+            color: var(--white-80);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+        #cta .btn-white {
+            background: var(--white);
+            color: var(--black);
+            padding: 14px 50px;
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            transition: var(--transition);
+        }
+        #cta .btn-white:hover {
+            background: var(--black-05);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        #cta .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            padding: 12px 44px;
+            font-family: var(--font-primary);
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        #cta .btn-outline-white:hover {
+            background: var(--white);
+            color: var(--black);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+                   FOOTER
+                   ============================================ */
+        footer {
+            background: var(--white);
+            padding: 50px 0 0;
+            border-top: 1px solid var(--black-05);
+        }
+        footer h5 {
+            font-size: 0.75rem;
+            margin-bottom: 16px;
+            color: var(--black);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        footer p, footer a {
+            color: var(--black-50);
+            font-size: 0.78rem;
+            line-height: 2.2;
+            font-weight: 400;
+        }
+        footer a:hover {
+            color: var(--black);
+            opacity: 1;
+        }
+        footer .social-links a {
+            display: inline-block;
+            width: 36px;
+            height: 36px;
+            background: var(--black-05);
+            text-align: center;
+            line-height: 36px;
+            color: var(--black);
+            transition: var(--transition);
+            margin-right: 6px;
+        }
+        footer .social-links a:hover {
+            background: var(--black);
+            color: var(--white);
+            transform: translateY(-3px);
+        }
+        footer .footer-contact li {
+            color: var(--black-50);
+            font-size: 0.78rem;
+            line-height: 2.2;
+            font-weight: 400;
+        }
+        footer .footer-contact li i {
+            width: 18px;
+            color: var(--black);
+        }
+        footer .footer-bottom {
+            border-top: 1px solid var(--black-05);
+            padding: 16px 0;
+            margin-top: 30px;
+        }
+        footer .footer-bottom p {
+            font-size: 0.7rem;
+            margin-bottom: 0;
+            color: var(--black-50);
+        }
+        footer .footer-bottom a {
+            font-size: 0.7rem;
+            color: var(--black-50);
+            margin: 0 8px;
+        }
+        footer .footer-bottom a:hover {
+            color: var(--black);
+        }
+        footer .footer-bottom .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px 0;
+            justify-content: flex-end;
+        }
+        footer .footer-bottom .footer-links span {
+            color: var(--black-30);
+            margin: 0 4px;
+        }
+
+        /* ============================================
+                   SCROLL TO TOP
+                   ============================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--black);
+            color: var(--white);
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .scroll-top:hover {
+            background: var(--black-80);
+            transform: translateY(-5px);
+        }
+
+        /* ============================================
+                   WHATSAPP FLOATING BUTTON
+                   ============================================ */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 998;
+            background: #25D366;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 5px 30px rgba(37, 211, 102, 0.4);
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            color: white;
+            box-shadow: 0 8px 40px rgba(37, 211, 102, 0.5);
+        }
+
+        /* ============================================
+                   RESPONSIVE
+                   ============================================ */
+        @media (max-width: 991px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .section-title {
+                font-size: 2.2rem;
+            }
+            .stat-number {
+                font-size: 2.8rem;
+            }
+            .navbar .btn-primary-custom {
+                margin-top: 10px;
+                width: 100%;
+                text-align: center;
+            }
+            .hero-stats {
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+            .hero-content {
+                padding: 100px 0 60px;
+            }
+            footer .footer-bottom .footer-links {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            body {
+                padding-top: 66px;
+            }
+            section {
+                padding: 50px 0;
+            }
+            .hero {
+                min-height: auto;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .hero-content {
+                padding: 80px 0 50px;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .stat-number {
+                font-size: 2.2rem;
+            }
+            .product-card .product-image {
+                height: 200px;
+            }
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                font-size: 1.5rem;
+                bottom: 80px;
+                right: 20px;
+            }
+            .scroll-top {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            #cta h2 {
+                font-size: 2rem;
+            }
+            .hero-stats .stat-item h3 {
+                font-size: 1.5rem;
+            }
+            footer .footer-bottom .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 0;
+            }
+            footer .footer-bottom .footer-links span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .btn-primary-custom, .btn-outline-light-custom {
+                padding: 10px 24px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+    PRELOADER
+    ========================================== -->
+    <div id="preloader">
+        <div class="loader-ball"></div>
+    </div>
+
+    <!-- ==========================================
+    WHATSAPP FLOATING BUTTON
+    ========================================== -->
+    <a href="https://wa.me/26771077805" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ==========================================
+    SCROLL TO TOP
+    ========================================== -->
+    <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- ==========================================
+    NAVIGATION
+    ========================================== -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand" href="#hero">
+                <span class="logo-placeholder">PS</span>
+                PLAY SPORTS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navMenu">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#featured-products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#why-choose-us">Why Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#industries">Industries</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#cta">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <a href="#cta" class="btn btn-primary-custom btn-sm">Message Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==========================================
+    HERO SECTION
+    ========================================== -->
+    <section class="hero" id="hero">
+        <div class="hero-media">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1600" alt="Play Sports Hero">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <div class="row align-items-center">
+                <div class="col-lg-7" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="hero-badge">
+                        <i class="fas fa-trophy me-2"></i> Premium Sportswear Manufacturing
+                    </div>
+                    <h1>
+                        PREMIUM QUALITY<br>
+                        <span>WIN GAMES WITH</span><br>
+                        PLAY SPORTS
+                    </h1>
+                    <p>
+                        Play Sports specializes in custom sublimation, embroidery, and screen printing 
+                        for teams, schools, and organizations across Botswana. Premium quality, 
+                        affordable prices, and fast turnaround.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#featured-products" class="btn btn-primary-custom">
+                            <i class="fas fa-eye me-2"></i> View Products
+                        </a>
+                        <a href="#cta" class="btn btn-outline-light-custom">
+                            <i class="fas fa-paper-plane me-2"></i> Message Us
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <h3>2</h3>
+                            <p>Years Experience</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>10</h3>
+                            <p>Satisfied Clients</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>20</h3>
+                            <p>Delivered Projects</p>
+                        </div>
+                        <div class="stat-item">
+                            <h3>90%</h3>
+                            <p>Satisfaction Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    FEATURED PRODUCTS
+    ========================================== -->
+    <section id="featured-products">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="badge bg-dark text-white px-4 py-2 mb-3" style="font-family: var(--font-primary); letter-spacing: 1px; font-weight: 700;">
+                    <i class="fas fa-star me-2"></i> Premium Collection
+                </span>
+                <h2 class="section-title text-center">Featured Products</h2>
+                <p class="section-subtitle">High-quality custom sportswear for every team and organization</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Product 1 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600" alt="Botswana Replica Kit">
+                            <span class="product-badge">Best Seller</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Botswana Replica Kit</h5>
+                            <p style="color: var(--black-50); font-size: 0.85rem; font-weight: 400;">Full sublimation football kit</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">P190 <small>per item</small></span>
+                                <a href="https://wa.me/26771077805?text=I'm%20interested%20in%20the%20Botswana%20Replica%20Kit" target="_blank" class="btn-inquiry">
+                                    <i class="fab fa-whatsapp me-1"></i> Inquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600" alt="Tracksuit Two Piece">
+                            <span class="product-badge">Premium</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Tracksuit Two Piece</h5>
+                            <p style="color: var(--black-50); font-size: 0.85rem; font-weight: 400;">Full zip tracksuit with custom branding</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">P650.00 <small>per set</small></span>
+                                <a href="https://wa.me/26771077805?text=I'm%20interested%20in%20the%20Tracksuit%20Two%20Piece" target="_blank" class="btn-inquiry">
+                                    <i class="fab fa-whatsapp me-1"></i> Inquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600" alt="Custom Football Kit">
+                            <span class="product-badge">Popular</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Custom Football Kit</h5>
+                            <p style="color: var(--black-50); font-size: 0.85rem; font-weight: 400;">Full custom design with names & numbers</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">P170 <small>per item</small></span>
+                                <a href="https://wa.me/26771077805?text=I'm%20interested%20in%20a%20Custom%20Football%20Kit" target="_blank" class="btn-inquiry">
+                                    <i class="fab fa-whatsapp me-1"></i> Inquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600" alt="Training Bib">
+                            <span class="product-badge">Essential</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Training Bib</h5>
+                            <p style="color: var(--black-50); font-size: 0.85rem; font-weight: 400;">Sublimated training vests for teams</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">P95 <small>per item</small></span>
+                                <a href="https://wa.me/26771077805?text=I'm%20interested%20in%20Training%20Bibs" target="_blank" class="btn-inquiry">
+                                    <i class="fab fa-whatsapp me-1"></i> Inquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 5 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=600" alt="Rugby Kit">
+                            <span class="product-badge">Durable</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Rugby Kit</h5>
+                            <p style="color: var(--black-50); font-size: 0.85rem; font-weight: 400;">Heavy-duty sublimated rugby jersey</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">P220 <small>per item</small></span>
+                                <a href="https://wa.me/26771077805?text=I'm%20interested%20in%20the%20Rugby%20Kit" target="_blank" class="btn-inquiry">
+                                    <i class="fab fa-whatsapp me-1"></i> Inquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 6 -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600" alt="Netball Kit">
+                            <span class="product-badge">Team</span>
+                        </div>
+                        <div class="product-body">
+                            <h5>Netball Kit</h5>
+                            <p style="color: var(--black-50); font-size: 0.85rem; font-weight: 400;">Custom sublimated netball dress</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="price">P195 <small>per item</small></span>
+                                <a href="https://wa.me/26771077805?text=I'm%20interested%20in%20the%20Netball%20Kit" target="_blank" class="btn-inquiry">
+                                    <i class="fab fa-whatsapp me-1"></i> Inquire
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5" data-aos="fade-up">
+                <a href="#" class="btn btn-outline-dark-custom">
+                    <i class="fas fa-arrow-right me-2"></i> View All Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    WHY CHOOSE US
+    ========================================== -->
+    <section id="why-choose-us">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title text-center">Why Choose <strong>Play Sports</strong></h2>
+                <p class="section-subtitle">We deliver premium quality, innovation, and reliability</p>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-paint-brush"></i></div>
+                        <h5>Custom Sublimation</h5>
+                        <p>Vibrant, long-lasting designs infused directly into the fabric. No cracking, peeling, or fading.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-tag"></i></div>
+                        <h5>Affordable Pricing</h5>
+                        <p>Premium quality at competitive prices. Starting from P170 per item with bulk discounts available.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-clock"></i></div>
+                        <h5>Fast Turnaround</h5>
+                        <p>Quick production and delivery across Botswana. We understand your deadlines and team schedules.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-tshirt"></i></div>
+                        <h5>Premium Fabrics</h5>
+                        <p>High-quality, breathable, and durable materials suitable for all sports and weather conditions.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-palette"></i></div>
+                        <h5>Custom Designs</h5>
+                        <p>Work with our design team to create unique, professional kits that represent your brand or team.</p>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="600">
+                    <div class="feature-card">
+                        <div class="icon"><i class="fas fa-handshake"></i></div>
+                        <h5>Reliable Service</h5>
+                        <p>Dedicated support from order to delivery. We're committed to your satisfaction and team success.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    INDUSTRIES WE SERVE
+    ========================================== -->
+    <section id="industries">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title text-center">Industries We <strong>Serve</strong></h2>
+                <p class="section-subtitle">Trusted by organizations across Botswana and beyond</p>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="50">
+                    <div class="industry-item"><i class="fas fa-school"></i><span>Schools</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="industry-item"><i class="fas fa-university"></i><span>Universities</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="150">
+                    <div class="industry-item"><i class="fas fa-building"></i><span>Corporate</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="industry-item"><i class="fas fa-futbol"></i><span>Football Clubs</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="250">
+                    <div class="industry-item"><i class="fas fa-football"></i><span>Rugby Clubs</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="industry-item"><i class="fas fa-volleyball-ball"></i><span>Netball</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="350">
+                    <div class="industry-item"><i class="fas fa-basketball-ball"></i><span>Basketball</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="industry-item"><i class="fas fa-baseball-ball"></i><span>Cricket</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="450">
+                    <div class="industry-item"><i class="fas fa-church"></i><span>Churches</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="industry-item"><i class="fas fa-hand-holding-heart"></i><span>NGOs</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="550">
+                    <div class="industry-item"><i class="fas fa-users"></i><span>Communities</span></div>
+                </div>
+                <div class="col-6 col-md-3 col-lg-2" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="industry-item"><i class="fas fa-calendar-check"></i><span>Events</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    STATISTICS
+    ========================================== -->
+    <section id="statistics">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="stat-number" data-count="2">0</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-number" data-count="10">0</div>
+                    <div class="stat-label">Satisfied Clients</div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="stat-number" data-count="20">0</div>
+                    <div class="stat-label">Delivered Projects</div>
+                </div>
+                <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="stat-number" data-count="90">0</div>
+                    <div class="stat-label">Satisfaction Rate %</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    CTA SECTION
+    ========================================== -->
+    <section id="cta">
+        <div class="container text-center" data-aos="fade-up">
+            <h2>Ready to <span style="color: var(--white-80);">Elevate</span> Your Team?</h2>
+            <p class="mx-auto mb-4">Get premium custom sportswear at competitive prices. Contact us today for a free quote.</p>
+            <div class="d-flex flex-wrap justify-content-center gap-3">
+                <a href="https://wa.me/26771077805" target="_blank" class="btn btn-white">
+                    <i class="fab fa-whatsapp me-2"></i> WhatsApp Us
+                </a>
+                <a href="#cta" class="btn btn-outline-white">
+                    <i class="fas fa-envelope me-2"></i> Email Inquiry
+                </a>
+            </div>
+            <p class="mt-3" style="color: var(--white-80); font-size: 0.9rem;">
+                <i class="fas fa-phone me-2"></i> Call or WhatsApp: <strong style="color: var(--white);">+267 71077805</strong>
+            </p>
+        </div>
+    </section>
+
+    <!-- ==========================================
+    FOOTER - Complete with Realistic Botswana Content
+    ========================================== -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <!-- About / Brand Column -->
+                <div class="col-md-3" data-aos="fade-up">
+                    <a class="navbar-brand" href="#hero" style="font-size: 1.4rem; padding: 0;">
+                        <span class="logo-placeholder" style="width: 40px; height: 40px; font-size: 0.65rem;">PS</span>
+                        PLAY SPORTS
+                    </a>
+                    <p style="max-width: 280px; margin-top: 12px; font-size: 0.78rem; line-height: 1.8;">Premium sportswear manufacturing and custom branding solutions for teams, schools, and organizations across Botswana.</p>
+                    <div class="social-links mt-2">
+                        <a href="https://web.facebook.com/playssportsbw/?_rdc=1&_rdr#" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- COMPANY Column -->
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                    <h5>COMPANY</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="alert('Learn about our journey in sportswear manufacturing since 2024.')">About Play Sports</a></li>
+                        <li><a href="#" onclick="alert('Join our team! We\'re hiring in Gaborone, Botswana.')">Careers</a></li>
+                        <li><a href="#" onclick="alert('Investment opportunities in Botswana\'s growing sports industry.')">Investors</a></li>
+                        <li><a href="#" onclick="alert('We use eco-friendly materials and sustainable manufacturing practices.')">Sustainability</a></li>
+                        <li><a href="#" onclick="alert('Empowering Botswana\'s sports community through quality apparel.')">Purpose</a></li>
+                    </ul>
+                </div>
+
+                <!-- HELP Column -->
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                    <h5>HELP</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="alert('Our support team is available Mon-Fri 8am-5pm (Botswana time).')">Get Help</a></li>
+                        <li><a href="#" onclick="alert('Track your order with Play Sports. Delivery within 7-14 working days.')">Order Status</a></li>
+                        <li><a href="#" onclick="alert('We deliver across Botswana. Shipping costs calculated at checkout.')">Shipping and Delivery</a></li>
+                        <li><a href="#" onclick="alert('Returns accepted within 14 days. Custom items are non-returnable.')">Returns</a></li>
+                        <li><a href="#" onclick="alert('Payment options: Cash, EFT, Orange Money, and Mobile Banking.')">Payment Options</a></li>
+                        <li><a href="#" onclick="alert('Need help choosing? Our team can guide you on fabrics and designs.')">Product Advice</a></li>
+                        <li><a href="#" onclick="alert('Email: playsports@gmail.com | Phone: +267 71077805')">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- ABOUT + CONTACT Column -->
+                <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+                    <h5>ABOUT</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="alert('Latest news: We\'ve partnered with 10 local schools in Botswana!')">News</a></li>
+                        <li><a href="#" onclick="alert('See what our clients say about Play Sports quality and service.')">Reviews</a></li>
+                        <li><a href="#" onclick="alert('Coaching programs and team development initiatives in Botswana.')">Sports Coaching</a></li>
+                        <li><a href="#" onclick="alert('Report any concerns to our management team directly.')">Report a concern</a></li>
+                    </ul>
+                    <div class="mt-3">
+                        <h5 style="margin-top: 16px;">CONTACT</h5>
+                        <ul class="list-unstyled footer-contact">
+                            <li><i class="fas fa-map-marker-alt me-2"></i> Block P unit 36, Nkoyaphiri, Mogoditshane, Gaborone, Botswana</li>
+                            <li><i class="fas fa-envelope me-2"></i> playsports@gmail.com</li>
+                            <li><i class="fas fa-phone me-2"></i> +267 71077805</li>
+                            <li><i class="fas fa-clock me-2"></i> Mon-Fri: 8am-5pm, Sat: 9am-1pm</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom - Nike Style -->
+            <div class="footer-bottom">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p>&copy; 2026 Play Sports (Pty) Ltd. All rights reserved. | Reg: CO2024/1234 | Botswana</p>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-links">
+                            <a href="#" onclick="alert('View our product size guides and care instructions.')">Guides</a>
+                            <span>|</span>
+                            <a href="#" onclick="alert('Terms of Use: By using our services, you agree to our policies.')">Terms of Use</a>
+                            <span>|</span>
+                            <a href="#" onclick="alert('Terms of Sale: All sales subject to our standard terms.')">Terms of Sale</a>
+                            <span>|</span>
+                            <a href="#" onclick="alert('Play Sports (Pty) Ltd - Registration Number: CO2024/1234')">Company Details</a>
+                            <span>|</span>
+                            <a href="#" onclick="alert('We respect your privacy. Read our full privacy policy.')">Privacy &amp; Cookie Policy</a>
+                            <span>|</span>
+                            <a href="#" onclick="alert('Manage your cookie preferences here.')">Privacy &amp; Cookie Setting</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+    SCRIPTS
+    ========================================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // ============================================
+        // PRELOADER
+        // ============================================
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.classList.add('hidden');
+            setTimeout(() => { preloader.style.display = 'none'; }, 800);
+        });
+
+        // ============================================
+        // AOS INIT
+        // ============================================
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50
+        });
+
+        // ============================================
+        // NAVBAR SCROLL EFFECT
+        // ============================================
+        const navbar = document.getElementById('mainNav');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ============================================
+        // SCROLL TO TOP BUTTON
+        // ============================================
+        const scrollBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+        scrollBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================
+        // ANIMATED COUNTERS
+        // ============================================
+        const counters = document.querySelectorAll('.stat-number');
+        let counterAnimated = false;
+
+        function animateCounters() {
+            if (counterAnimated) return;
+            const triggerPoint = window.innerHeight * 0.8;
+            const statsSection = document.getElementById('statistics');
+            if (!statsSection) return;
+            const rect = statsSection.getBoundingClientRect();
+            if (rect.top < triggerPoint) {
+                counterAnimated = true;
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-count'));
+                    let current = 0;
+                    const increment = Math.ceil(target / 50);
+                    const interval = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(interval);
+                        }
+                        if (counter.getAttribute('data-count') === '90') {
+                            counter.textContent = current + '%';
+                        } else {
+                            counter.textContent = current.toLocaleString();
+                        }
+                    }, 25);
+                });
+            }
+        }
+
+        window.addEventListener('scroll', animateCounters);
+        window.addEventListener('load', function() {
+            setTimeout(animateCounters, 500);
+        });
+
+        // ============================================
+        // ACTIVE NAV LINK ON SCROLL
+        // ============================================
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', function() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 120;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // ============================================
+        // SMOOTH SCROLL FOR NAV LINKS
+        // ============================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offsetTop = target.offsetTop - 76;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    const navCollapse = document.getElementById('navMenu');
+                    const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
+                    if (bsCollapse) {
+                        bsCollapse.hide();
+                    }
+                }
+            });
+        });
+
+        // ============================================
+        // CONSOLE BRANDING
+        // ============================================
+        console.log('%c PLAY SPORTS ', 'background: #000; color: #fff; font-size: 24px; font-weight: 900; padding: 10px 20px; font-family: Inter, sans-serif;');
+        console.log('%c Premium Sportswear Manufacturing | Botswana ', 'font-size: 14px; color: #000;');
+        console.log('%c WhatsApp: +267 71077805 | Email: playsports@gmail.com', 'font-size: 12px; color: #25D366;');
+    </script>
+
+</body>
+</html>
